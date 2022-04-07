@@ -1,0 +1,219 @@
+Microsoft Windows [versão 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation. Todos os direitos reservados.
+
+C:\Users\2219692>python
+Python 2.7.10 (default, May 23 2015, 09:44:00) [MSC v.1500 64 bit (AMD64)] on wi
+n32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> quit()
+
+C:\Users\2219692>cd \wamp\www\sistec-download\planilhas\presencial\2020-01-13
+
+C:\wamp\www\sistec-download\planilhas\presencial\2020-01-13>dir
+ O volume na unidade C não tem nome.
+ O Número de Série do Volume é 6A27-6D6A
+
+ Pasta de C:\wamp\www\sistec-download\planilhas\presencial\2020-01-13
+
+14/01/2020  13:51    <DIR>          .
+14/01/2020  13:51    <DIR>          ..
+14/01/2020  13:51    <DIR>          com_cpf
+14/01/2020  13:51    <DIR>          documentação
+14/01/2020  13:51    <DIR>          sem_cpf
+               0 arquivo(s)              0 bytes
+               5 pasta(s)   922.368.380.928 bytes disponíveis
+
+C:\wamp\www\sistec-download\planilhas\presencial\2020-01-13>cd com_cpf
+
+################################################################################
+Aqui se executou o script python para planilhas presenciais de alunos com cpf
+
+C:\wamp\www\sistec-download\planilhas\presencial\2020-01-13\com_cpf>..\..\..\..\ajusta_planilhas_presencial_com_cpf.py
+
+################################################################################
+
+C:\wamp\www\sistec-download\planilhas\presencial\2020-01-13\com_cpf>cd ..
+
+C:\wamp\www\sistec-download\planilhas\presencial\2020-01-13>cd sem_cpf
+
+################################################################################
+Aqui se executou o script python para planilhas presenciais de alunos sem cpf
+
+C:\wamp\www\sistec-download\planilhas\presencial\2020-01-13\sem_cpf>python ..\..\..\..\ajusta_planilhas_presencial_sem_cpf.py
+
+################################################################################
+Aqui se executa a união das planilhas presenciais de alunos com cpf e sem cpf
+
+C:\wamp\www\sistec-download\planilhas\presencial\2020-01-13>python ..\..\..\ajusta_planilhas.py
+
+################################################################################
+Aqui lista as planilhas presenciais
+
+C:\wamp\www\sistec-download\planilhas\presencial\2020-01-13>dir
+ O volume na unidade C não tem nome.
+ O Número de Série do Volume é 6A27-6D6A
+
+ Pasta de C:\wamp\www\sistec-download\planilhas\presencial\2020-01-13
+
+14/01/2020  14:57    <DIR>          .
+14/01/2020  14:57    <DIR>          ..
+14/01/2020  13:51    <DIR>          com_cpf
+14/01/2020  14:57           500.390 CÂMPUS ANÁPOLIS.csv
+14/01/2020  14:57           250.348 CÂMPUS APARECIDA DE GOIÂNIA.csv
+14/01/2020  14:57           164.011 CÂMPUS CIDADE DE GOIÁS.csv
+14/01/2020  14:57           406.202 CÂMPUS FORMOSA.csv
+14/01/2020  14:57           185.678 CÂMPUS GOIÂNIA OESTE.csv
+14/01/2020  14:57         2.449.966 CÂMPUS GOIÂNIA.csv
+14/01/2020  14:57           431.618 CÂMPUS INHUMAS.csv
+14/01/2020  14:57           437.965 CÂMPUS ITUMBIARA.csv
+14/01/2020  14:57           684.646 CÂMPUS JATAÍ.csv
+14/01/2020  14:57           398.067 CÂMPUS LUZIÂNIA.csv
+14/01/2020  14:57           139.872 CÂMPUS SENADOR CANEDO.csv
+14/01/2020  14:57           454.408 CÂMPUS URUAÇU.csv
+14/01/2020  14:57           118.358 CÂMPUS VALPARAÍSO.csv
+14/01/2020  14:57           145.160 CÂMPUS ÁGUAS LINDAS.csv
+14/01/2020  13:51    <DIR>          sem_cpf
+              14 arquivo(s)      6.766.689 bytes
+               4 pasta(s)   922.377.662.464 bytes disponíveis
+
+C:\wamp\www\sistec-download\planilhas\presencial\2020-01-13>
+
+################################################################################
+
+C:\wamp\www\sistec-download\planilhas\presencial\2020-01-13>cd ..
+
+C:\wamp\www\sistec-download\planilhas\presencial>cd ..\ead\2020-01-13
+
+C:\wamp\www\sistec-download\planilhas\ead\2020-01-13>cd com_cpf
+
+################################################################################
+Aqui se executou o script python para planilhas ead de alunos com cpf
+
+C:\wamp\www\sistec-download\planilhas\ead\2020-01-13\com_cpf>python ..\..\..\..\ajusta_planilhas_ead_com_cpf.py
+
+################################################################################
+
+C:\wamp\www\sistec-download\planilhas\ead\2020-01-13\com_cpf>cd ..
+
+C:\wamp\www\sistec-download\planilhas\ead\2020-01-13>cd sem_cpf
+
+################################################################################
+Aqui se executou o script python para planilhas ead de alunos sem cpf
+
+C:\wamp\www\sistec-download\planilhas\ead\2020-01-13\sem_cpf>python ..\..\..\..\ajusta_planilhas_ead_sem_cpf.py
+
+################################################################################
+Aqui se executa a união das planilhas ead de alunos com cpf e sem cpf
+
+C:\wamp\www\sistec-download\planilhas\ead\2020-01-13\sem_cpf>cd ..
+
+C:\wamp\www\sistec-download\planilhas\ead\2020-01-13>..\..\..\ajusta_planilhas.py
+
+################################################################################
+Aqui lista-se as planilhas ead
+
+C:\wamp\www\sistec-download\planilhas\ead\2020-01-13>dir
+ O volume na unidade C não tem nome.
+ O Número de Série do Volume é 6A27-6D6A
+
+ Pasta de C:\wamp\www\sistec-download\planilhas\ead\2020-01-13
+
+14/01/2020  14:43    <DIR>          .
+14/01/2020  14:43    <DIR>          ..
+14/01/2020  14:39    <DIR>          com_cpf
+14/01/2020  14:43            84.644 CÂMPUS ANÁPOLIS.csv
+14/01/2020  14:43           132.851 CÂMPUS APARECIDA DE GOIÂNIA.csv
+14/01/2020  14:43            24.355 CÂMPUS CIDADE DE GOIÁS.csv
+14/01/2020  14:43            41.528 CÂMPUS FORMOSA.csv
+14/01/2020  14:43            53.570 CÂMPUS GOIÂNIA OESTE.csv
+14/01/2020  14:43           265.014 CÂMPUS GOIÂNIA.csv
+14/01/2020  14:43            82.267 CÂMPUS INHUMAS.csv
+14/01/2020  14:43            23.600 CÂMPUS ITUMBIARA.csv
+14/01/2020  14:43            22.842 CÂMPUS JATAÍ.csv
+14/01/2020  14:43            75.372 CÂMPUS LUZIÂNIA.csv
+14/01/2020  14:43            25.720 CÂMPUS SENADOR CANEDO.csv
+14/01/2020  14:43            39.668 CÂMPUS URUAÇU.csv
+14/01/2020  14:43            37.326 CÂMPUS VALPARAÍSO.csv
+14/01/2020  14:43            25.597 CÂMPUS ÁGUAS LINDAS.csv
+14/01/2020  14:39    <DIR>          sem_cpf
+              14 arquivo(s)        934.354 bytes
+               4 pasta(s)   922.384.785.408 bytes disponíveis
+
+C:\wamp\www\sistec-download\planilhas\ead\2020-01-13>
+
+################################################################################
+Gerando a planilha presencial completa com todos os câmpus
+
+C:\wamp\www\sistec-download\planilhas\presencial\2020-01-13>path=%PATH%;..\..\..
+
+C:\wamp\www\sistec-download\planilhas\presencial\2020-01-13>..\..\..\gerar_planilha_completa.bat
+
+C:\wamp\www\sistec-download\planilhas\presencial\2020-01-13>dir
+ O volume na unidade C não tem nome.
+ O Número de Série do Volume é 6A27-6D6A
+
+ Pasta de C:\wamp\www\sistec-download\planilhas\presencial\2020-01-13
+
+14/01/2020  15:39    <DIR>          .
+14/01/2020  15:39    <DIR>          ..
+14/01/2020  13:51    <DIR>          com_cpf
+14/01/2020  14:57           500.390 CÂMPUS ANÁPOLIS.csv
+14/01/2020  14:57           250.348 CÂMPUS APARECIDA DE GOIÂNIA.csv
+14/01/2020  14:57           164.011 CÂMPUS CIDADE DE GOIÁS.csv
+14/01/2020  14:57           406.202 CÂMPUS FORMOSA.csv
+14/01/2020  14:57           185.678 CÂMPUS GOIÂNIA OESTE.csv
+14/01/2020  14:57         2.449.966 CÂMPUS GOIÂNIA.csv
+14/01/2020  14:57           431.618 CÂMPUS INHUMAS.csv
+14/01/2020  14:57           437.965 CÂMPUS ITUMBIARA.csv
+14/01/2020  14:57           684.646 CÂMPUS JATAÍ.csv
+14/01/2020  14:57           398.067 CÂMPUS LUZIÂNIA.csv
+14/01/2020  14:57           139.872 CÂMPUS SENADOR CANEDO.csv
+14/01/2020  14:57           454.408 CÂMPUS URUAÇU.csv
+14/01/2020  14:57           118.358 CÂMPUS VALPARAÍSO.csv
+14/01/2020  14:57           145.160 CÂMPUS ÁGUAS LINDAS.csv
+14/01/2020  15:39         6.810.243 planilha_20200114_1539.csv
+14/01/2020  13:51    <DIR>          sem_cpf
+              15 arquivo(s)     13.576.932 bytes
+               4 pasta(s)   922.386.198.528 bytes disponíveis
+
+################################################################################
+Gerando a planilha ead completa com todos os câmpus
+
+C:\wamp\www\sistec-download\planilhas\presencial\2020-01-13>cd ..
+
+C:\wamp\www\sistec-download\planilhas\presencial>cd ..
+
+C:\wamp\www\sistec-download\planilhas>cd ead\2020-01-13
+
+C:\wamp\www\sistec-download\planilhas\ead\2020-01-13>..\..\..\gerar_planilha_completa.bat
+
+C:\wamp\www\sistec-download\planilhas\ead\2020-01-13>dir
+ O volume na unidade C não tem nome.
+ O Número de Série do Volume é 6A27-6D6A
+
+ Pasta de C:\wamp\www\sistec-download\planilhas\ead\2020-01-13
+
+14/01/2020  15:40    <DIR>          .
+14/01/2020  15:40    <DIR>          ..
+14/01/2020  14:39    <DIR>          com_cpf
+14/01/2020  14:43            84.644 CÂMPUS ANÁPOLIS.csv
+14/01/2020  14:43           132.851 CÂMPUS APARECIDA DE GOIÂNIA.csv
+14/01/2020  14:43            24.355 CÂMPUS CIDADE DE GOIÁS.csv
+14/01/2020  14:43            41.528 CÂMPUS FORMOSA.csv
+14/01/2020  14:43            53.570 CÂMPUS GOIÂNIA OESTE.csv
+14/01/2020  14:43           265.014 CÂMPUS GOIÂNIA.csv
+14/01/2020  14:43            82.267 CÂMPUS INHUMAS.csv
+14/01/2020  14:43            23.600 CÂMPUS ITUMBIARA.csv
+14/01/2020  14:43            22.842 CÂMPUS JATAÍ.csv
+14/01/2020  14:43            75.372 CÂMPUS LUZIÂNIA.csv
+14/01/2020  14:43            25.720 CÂMPUS SENADOR CANEDO.csv
+14/01/2020  14:43            39.668 CÂMPUS URUAÇU.csv
+14/01/2020  14:43            37.326 CÂMPUS VALPARAÍSO.csv
+14/01/2020  14:43            25.597 CÂMPUS ÁGUAS LINDAS.csv
+14/01/2020  15:40           938.162 planilha_20200114_1540.csv
+14/01/2020  14:39    <DIR>          sem_cpf
+              15 arquivo(s)      1.872.516 bytes
+               4 pasta(s)   922.385.338.368 bytes disponíveis
+
+C:\wamp\www\sistec-download\planilhas\ead\2020-01-13>
+################################################################################
