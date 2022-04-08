@@ -22,7 +22,7 @@ planilhas = {
     u'CÂMPUS VALPARAÍSO.csv': 3649
 }
 
-for item in planilhas.iteritems():
+for item in planilhas.items():
     try:
         file_csv = open(path.join(path.curdir, item[0]), 'r+')
     except:

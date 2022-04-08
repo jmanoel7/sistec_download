@@ -21,7 +21,7 @@ planilhas = {
     u'CÂMPUS VALPARAÍSO.csv': 3649
 }
 
-for item in planilhas.iteritems():
+for item in planilhas.items():
     # LÊ ARQUIVOS COM CPF:
     try:
         file_csv_com_cpf = open(path.join(path.curdir, 'com_cpf', item[0]), 'r')
