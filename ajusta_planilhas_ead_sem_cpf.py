@@ -24,7 +24,7 @@ planilhas = {
 
 for item in planilhas.items():
     try:
-        file_csv = open(path.join(path.curdir, item[0]), 'r+')
+        file_csv = open(path.join(path.curdir, item[0]), 'rb+')
     except:
         e = sys.exc_info()[1]
         print (u'\n\tNão foi possível abrir o arquivo: \"%s\"' % item[0])
@@ -34,6 +34,7 @@ for item in planilhas.items():
     new_line_items = ['0', '1', '2', '3', '4', '5', '6', '7', '8']
     file_csv.readline()
     for line in file_csv:
+        line = line.decode('iso-8859-1')
         # COLUNAS DO ARQUIVO CSV
         # 00: CO_ALUNO            01: NO_ALUNO	           02: SG_SEXO	           03: DT_DATA_NASCIMENTO 04: DS_EMAIL	05: CO_PESSOA_FISICA_ALUNO
         # 06: DS_SENHA            07: CO_MATRICULA         08: CO_CICLO_MATRICULA  09: CO_CURSO           10: NU_CARGA_HORARIA
@@ -67,13 +68,14 @@ for item in planilhas.items():
         # CRIA UMA LINHA NOVA E ADICIONA SE NÃO FOR UMA LINHA REPETIDA
         new_line = ';'.join(new_line_items)
         new_line = new_line + '\n'
+        new_line = new_line.encode('iso-8859-1')
         if new_line in new_lines:
             print(new_line)
             continue
         new_lines.append(new_line)
     file_csv.seek(0)
     file_csv.truncate()
-    file_csv.write('NO_ALUNO;NU_CPF;CO_CURSO;DT_DATA_INICIO;DT_DATA_FIM_PREVISTO;NO_CICLO_MATRICULA;CO_TIPO_OFERTA_CURSO;CO_POLO;NO_STATUS_MATRICULA\n')
+    file_csv.write('NO_ALUNO;NU_CPF;CO_CURSO;DT_DATA_INICIO;DT_DATA_FIM_PREVISTO;NO_CICLO_MATRICULA;CO_TIPO_OFERTA_CURSO;CO_POLO;NO_STATUS_MATRICULA\n'.encode('iso-8859-1'))
     file_csv.writelines(new_lines)
     file_csv.flush()
     file_csv.close()

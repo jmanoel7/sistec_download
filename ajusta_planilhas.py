@@ -24,7 +24,7 @@ planilhas = {
 for item in planilhas.items():
     # LÊ ARQUIVOS COM CPF:
     try:
-        file_csv_com_cpf = open(path.join(path.curdir, 'com_cpf', item[0]), 'r')
+        file_csv_com_cpf = open(path.join(path.curdir, 'com_cpf', item[0]), 'rb')
     except:
         e = sys.exc_info()[1]
         print (u'\n\tNão foi possível abrir o arquivo: \"%s\"' % item[0])
@@ -37,7 +37,7 @@ for item in planilhas.items():
     file_csv_com_cpf.close()
     # LÊ ARQUIVOS SEM CPF:
     try:
-        file_csv_sem_cpf = open(path.join(path.curdir, 'sem_cpf', item[0]), 'r')
+        file_csv_sem_cpf = open(path.join(path.curdir, 'sem_cpf', item[0]), 'rb')
     except:
         e = sys.exc_info()[1]
         print (u'\n\tNão foi possível abrir o arquivo: \"%s\"' % item[0])
@@ -50,7 +50,7 @@ for item in planilhas.items():
     file_csv_sem_cpf.close()
     # ESCREVE ARQUIVOS CSV:
     try:
-        file_csv = open(path.join(path.curdir, item[0]), 'w')
+        file_csv = open(path.join(path.curdir, item[0]), 'wb')
     except:
         e = sys.exc_info()[1]
         print (u'\n\tNão foi possível abrir o arquivo: \"%s\"' % item[0])
@@ -58,7 +58,7 @@ for item in planilhas.items():
         continue
     file_csv.seek(0)
     file_csv.truncate()
-    file_csv.write('NO_ALUNO;NU_CPF;CO_CURSO;DT_DATA_INICIO;DT_DATA_FIM_PREVISTO;NO_CICLO_MATRICULA;CO_TIPO_OFERTA_CURSO;CO_POLO;NO_STATUS_MATRICULA\n')
+    file_csv.write('NO_ALUNO;NU_CPF;CO_CURSO;DT_DATA_INICIO;DT_DATA_FIM_PREVISTO;NO_CICLO_MATRICULA;CO_TIPO_OFERTA_CURSO;CO_POLO;NO_STATUS_MATRICULA\n'.encode('iso-8859-1'))
     file_csv.writelines(new_lines)
     file_csv.flush()
     file_csv.close()
