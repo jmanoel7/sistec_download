@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-from os import path
+import os
 import sys
 import re
 
@@ -24,7 +24,7 @@ planilhas = {
 
 for item in planilhas.items():
     try:
-        file_csv = open(path.join(path.curdir, item[0]), 'rb+')
+        file_csv = open(os.path.join(os.path.curdir, item[0]), 'rb+')
     except:
         e = sys.exc_info()[1]
         print (u'\n\tNão foi possível abrir o arquivo: \"%s\"' % item[0])
@@ -44,15 +44,20 @@ for item in planilhas.items():
         # USAREMOS AS SEGUINTES COLUNAS:
         # 02; 05; 11; 13; 14; 16; 17; item[1]; 22
         line_items = line.split(';')
-        new_line_items[0] = line_items[2].strip('\"')
-        new_line_items[1] = line_items[5].strip('\"')
-        new_line_items[2] = line_items[11].strip('\"')
-        new_line_items[3] = line_items[13].strip('\"')
-        new_line_items[4] = line_items[14].strip('\"')
-        new_line_items[5] = line_items[16].strip('\"')
-        new_line_items[6] = line_items[17].strip('\"')
-        new_line_items[7] = str(item[1])
-        new_line_items[8] = line_items[22].strip('\"')
+        try:
+            new_line_items[0] = line_items[2].strip('\"')
+            new_line_items[1] = line_items[5].strip('\"')
+            new_line_items[2] = line_items[11].strip('\"')
+            new_line_items[3] = line_items[13].strip('\"')
+            new_line_items[4] = line_items[14].strip('\"')
+            new_line_items[5] = line_items[16].strip('\"')
+            new_line_items[6] = line_items[17].strip('\"')
+            new_line_items[7] = str(item[1])
+            new_line_items[8] = line_items[22].strip('\"')
+        except IndexError:
+            print('Erro:')
+            print(line)
+            os._exit(1)
         # VERIFICA SE CURSO EH DO TIPO EAD:
         re_ead = re.compile(u'^.*[AÀÁ]\s*DIST[AÂ]NCIA.*$')
         match_ead = re_ead.search(new_line_items[5])
@@ -79,9 +84,12 @@ for item in planilhas.items():
             print(new_line)
             continue
         new_lines.append(new_line)
+    print(item[0])
+    print('INÍCIO')
     file_csv.seek(0)
     file_csv.truncate()
     file_csv.write('NO_ALUNO;NU_CPF;CO_CURSO;DT_DATA_INICIO;DT_DATA_FIM_PREVISTO;NO_CICLO_MATRICULA;CO_TIPO_OFERTA_CURSO;CO_POLO;NO_STATUS_MATRICULA\n'.encode('iso-8859-1'))
     file_csv.writelines(new_lines)
     file_csv.flush()
     file_csv.close()
+    print('FIM')
