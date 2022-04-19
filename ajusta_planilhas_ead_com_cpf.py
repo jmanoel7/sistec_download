@@ -62,7 +62,7 @@ for item in planilhas.items():
             continue
         # AJUSTA O CPF
         if new_line_items[1].strip(' ') != '':
-            cpf = new_line_items[1][0:3] + '.' + new_line_items[1][3:6] + '.' + new_line_items[1][6:9] + '-' + new_line_items[1][9:11]
+            cpf = new_line_items[1].strip(' ')
         else:
             cpf = '000.000.000-00'
         new_line_items[1] = cpf
