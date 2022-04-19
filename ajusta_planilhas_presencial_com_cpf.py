@@ -6,13 +6,13 @@ import sys
 import re
 
 planilhas = {
-    #u'CÂMPUS ÁGUAS LINDAS.csv': 3647,
-    #u'CÂMPUS ANÁPOLIS.csv': 699,
-    #u'CÂMPUS APARECIDA DE GOIÂNIA.csv': 210,
-    #u'CÂMPUS CIDADE DE GOIÁS.csv': 696,
-    #u'CÂMPUS FORMOSA.csv': 2012,
-    #u'CÂMPUS GOIÂNIA.csv': 212,
-    #u'CÂMPUS GOIÂNIA OESTE.csv': 3646,
+    u'CÂMPUS ÁGUAS LINDAS.csv': 3647,
+    u'CÂMPUS ANÁPOLIS.csv': 699,
+    u'CÂMPUS APARECIDA DE GOIÂNIA.csv': 210,
+    u'CÂMPUS CIDADE DE GOIÁS.csv': 696,
+    u'CÂMPUS FORMOSA.csv': 2012,
+    u'CÂMPUS GOIÂNIA.csv': 212,
+    u'CÂMPUS GOIÂNIA OESTE.csv': 3646,
     u'CÂMPUS INHUMAS.csv': 238,
     u'CÂMPUS ITUMBIARA.csv': 244,
     u'CÂMPUS JATAÍ.csv': 241,
@@ -106,9 +106,12 @@ for item in planilhas.items():
             print(new_line)
             continue
         new_lines.append(new_line)
+    print(item[0])
+    print("INÍCIO")
     file_csv.seek(0)
     file_csv.truncate()
     file_csv.write('NO_ALUNO;NU_CPF;CO_CURSO;DT_DATA_INICIO;DT_DATA_FIM_PREVISTO;NO_CICLO_MATRICULA;CO_TIPO_OFERTA_CURSO;CO_POLO;NO_STATUS_MATRICULA\n'.encode('iso-8859-1'))
     file_csv.writelines(new_lines)
     file_csv.flush()
     file_csv.close()
+    print("FIM")
