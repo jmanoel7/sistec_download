@@ -23,6 +23,8 @@ planilhas = {
 }
 
 for item in planilhas.items():
+    print(item[0])
+    print("INÍCIO")
     try:
         file_csv = open(os.path.join(os.path.curdir, item[0]), 'rb+')
     except:
@@ -106,8 +108,6 @@ for item in planilhas.items():
             print(new_line)
             continue
         new_lines.append(new_line)
-    print(item[0])
-    print("INÍCIO")
     file_csv.seek(0)
     file_csv.truncate()
     file_csv.write('NO_ALUNO;NU_CPF;CO_CURSO;DT_DATA_INICIO;DT_DATA_FIM_PREVISTO;NO_CICLO_MATRICULA;CO_TIPO_OFERTA_CURSO;CO_POLO;NO_STATUS_MATRICULA\n'.encode('iso-8859-1'))
