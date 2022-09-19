@@ -1,5 +1,5 @@
-# sistec-download-manual
-SISTEC-FILTRO-MANUAL: filtro de dados coletados do SISTEC (http://sistec.mec.gov.br)
+# sistec_filtro_manual
+SISTEC_FILTRO_MANUAL: filtro de dados coletados do SISTEC (http://sistec.mec.gov.br)
 
 ## Baixe automaticamente, por campus, as planilhas do SISTEC, usando nosso software:
 * `https://github.com/jmanoel7/sistec_download_automatico.git`
