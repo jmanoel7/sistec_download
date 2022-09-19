@@ -38,11 +38,23 @@ for item in planilhas.items():
     for line in file_csv:
         line = line.decode('iso-8859-1')
         # COLUNAS DO ARQUIVO CSV
+
+        # 00: CO_ALUNO_IDENTIFICADO    01: CO_ALUNO               02: NO_ALUNO
+        # 03: NO_MAE_ALUNO             04: SG_SEXO                05: DT_DATA_NASCIMENTO
+        # 06: NU_CPF                   07: DS_EMAIL               08: CO_PESSOA_FISICA_ALUNO
+        # 09: DS_SENHA                 10: CO_MATRICULA           11: CO_CICLO_MATRICULA
+        # 12: CO_CURSO                 13: NU_CARGA_HORARIA       14: DT_DATA_INICIO
+        # 15: DT_DATA_FIM_PREVISTO     16: CO_PERIODO_CADASTRO    17: NO_CICLO_MATRICULA
+        # 18: CO_TIPO_OFERTA_CURSO     19: CO_TIPO_INSTITUICAO    20: CO_PORTFOLIO
+        # 21: NU_VAGAS_OFERTADAS       22: NU_TOTAL_INSCRITOS     23: NO_STATUS_MATRICULA
+        # 24: CO_UNIDADE_ENSINO        25: MES_DE_OCORRENCIA
+
         # 00: CO_ALUNO_IDENTIFICADO 01: CO_ALUNO           02: NO_ALUNO               03: SG_SEXO             04: DT_DATA_NASCIMENTO
         # 05: NU_CPF                06: DS_EMAIL           07: CO_PESSOA_FISICA_ALUNO 08: DS_SENHA            09: CO_MATRICULA
         # 10: CO_CICLO_MATRICULA    11: CO_CURSO           12: NU_CARGA_HORARIA       13: DT_DATA_INICIO      14: DT_DATA_FIM_PREVISTO
         # 15: CO_PERIODO_CADASTRO   16: NO_CICLO_MATRICULA 17: CO_TIPO_OFERTA_CURSO   18: CO_TIPO_INSTITUICAO 19: CO_PORTFOLIO
         # 20: NU_VAGAS_OFERTADAS    21: NU_TOTAL_INSCRITOS 22: NO_STATUS_MATRICULA    23: CO_UNIDADE_ENSINO   24: MES_DE_OCORRENCIA
+
         # USAREMOS AS SEGUINTES COLUNAS:
         # 02; 05; 11; 13; 14; 16; 17; item[1]; 22
         line_items = line.split(';')
