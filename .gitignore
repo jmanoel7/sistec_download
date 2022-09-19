@@ -38,7 +38,7 @@ pip-delete-this-directory.txt
 # Unit test / coverage reports
 htmlcov/
 .tox/
-.coverage
+.coverage/
 .coverage.*
 .cache
 nosetests.xml
@@ -56,7 +56,7 @@ local_settings.py
 
 # Flask stuff:
 instance/
-.webassets-cache
+.webassets-cache/
 
 # Scrapy stuff:
 .scrapy
@@ -101,6 +101,7 @@ ENV/
 .mypy_cache/
 
 # dados privados da instituicao de ensino
+campi/
 sistec_cod_cursos/
 ead/
 presencial/
