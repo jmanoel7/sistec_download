@@ -5,7 +5,7 @@ SISTEC_FILTRO_MANUAL: filtro de dados coletados do SISTEC (http://sistec.mec.gov
 * `https://github.com/jmanoel7/sistec_download_automatico.git`
 
 ## Crie as seguintes pastas:
-* `mkdir ead
+* `mkdir ead`
 * `mkdir presencial`
 
 ## Copie as planilhas baixadas para as seguintes pastas:
