@@ -1,9 +1,11 @@
-#!/usr/bin/python3
+#!/usr/bin/python3.9
 # -*- coding: utf-8 -*-
+
 
 import os
 import sys
 import re
+
 
 planilhas = {
     u'CÂMPUS ÁGUAS LINDAS.csv': 3647,
@@ -37,6 +39,7 @@ for item in planilhas.items():
     file_csv.readline()
     for line in file_csv:
         line = line.decode('iso-8859-1')
+
         # COLUNAS DO ARQUIVO CSV
 
         # 00: CO_ALUNO_IDENTIFICADO    01: CO_ALUNO               02: NO_ALUNO
@@ -49,25 +52,20 @@ for item in planilhas.items():
         # 21: NU_VAGAS_OFERTADAS       22: NU_TOTAL_INSCRITOS     23: NO_STATUS_MATRICULA
         # 24: CO_UNIDADE_ENSINO        25: MES_DE_OCORRENCIA
 
-        # 00: CO_ALUNO_IDENTIFICADO 01: CO_ALUNO           02: NO_ALUNO               03: SG_SEXO             04: DT_DATA_NASCIMENTO
-        # 05: NU_CPF                06: DS_EMAIL           07: CO_PESSOA_FISICA_ALUNO 08: DS_SENHA            09: CO_MATRICULA
-        # 10: CO_CICLO_MATRICULA    11: CO_CURSO           12: NU_CARGA_HORARIA       13: DT_DATA_INICIO      14: DT_DATA_FIM_PREVISTO
-        # 15: CO_PERIODO_CADASTRO   16: NO_CICLO_MATRICULA 17: CO_TIPO_OFERTA_CURSO   18: CO_TIPO_INSTITUICAO 19: CO_PORTFOLIO
-        # 20: NU_VAGAS_OFERTADAS    21: NU_TOTAL_INSCRITOS 22: NO_STATUS_MATRICULA    23: CO_UNIDADE_ENSINO   24: MES_DE_OCORRENCIA
-
         # USAREMOS AS SEGUINTES COLUNAS:
-        # 02; 05; 11; 13; 14; 16; 17; item[1]; 22
+        # 02; 06; 12; 14; 15; 17; 18; item[1]; 23
+
         line_items = line.split(';')
         try:
             new_line_items[0] = line_items[2].strip('\"')
-            new_line_items[1] = line_items[5].strip('\"')
-            new_line_items[2] = line_items[11].strip('\"')
-            new_line_items[3] = line_items[13].strip('\"')
-            new_line_items[4] = line_items[14].strip('\"')
-            new_line_items[5] = line_items[16].strip('\"')
-            new_line_items[6] = line_items[17].strip('\"')
+            new_line_items[1] = line_items[6].strip('\"')
+            new_line_items[2] = line_items[12].strip('\"')
+            new_line_items[3] = line_items[14].strip('\"')
+            new_line_items[4] = line_items[15].strip('\"')
+            new_line_items[5] = line_items[17].strip('\"')
+            new_line_items[6] = line_items[18].strip('\"')
             new_line_items[7] = str(item[1])
-            new_line_items[8] = line_items[22].strip('\"')
+            new_line_items[8] = line_items[23].strip('\"')
         except IndexError:
             print('Erro:')
             print(line)
