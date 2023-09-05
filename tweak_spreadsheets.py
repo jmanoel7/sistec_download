@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3.11
 # -*- coding: utf-8 -*-
 
 
@@ -75,16 +75,19 @@ for item in planilhas.items():
         match_ead = re_ead.search(new_line_items[5])
         if match_ead:
             cursos = [
+                # -----BEGIN DISTANCE COURSE CODES-----
                 338565, 338569, 338571, 338572, 338573,
                 338574, 338575, 338578, 338580, 338581,
                 338582, 338583, 362343, 362344, 362345,
                 362346, 362347, 386102, 386117, 386119,
                 388126
+                # -----END DISTANCE COURSE CODES-----
             ]
             if int(new_line_items[2]) not in cursos:
                 continue
         else:
             cursos = [
+                # -----BEGIN FACE-TO-FACE COURSE CODES-----
                 2, 3, 5, 6, 16,
                 18, 28, 34, 36, 39,
                 40, 43, 47, 48, 51,
@@ -109,6 +112,7 @@ for item in planilhas.items():
                 362342, 365061, 365062, 365063, 365744,
                 366187, 368064, 376506, 376840, 376842,
                 376848, 390621, 391831
+                # -----END FACE-TO-FACE COURSE CODES-----
             ]
             if int(new_line_items[2]) not in cursos:
                 continue

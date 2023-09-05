@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3.11
 # -*- coding: utf-8 -*-
 
 
@@ -75,7 +75,13 @@ for item in planilhas.items():
         match_ead = re_ead.search(new_line_items[5])
         if not match_ead:
             continue
-        if int(new_line_items[2]) not in [29, 31, 32, 34, 40, 47, 85, 154, 158]:
+        cursos = [
+            # -----BEGIN DISTANCE COURSE CODES-----
+            29, 31, 32, 34, 40,
+            47, 85, 154, 158
+            # -----END DISTANCE COURSE CODES-----
+        ]
+        if int(new_line_items[2]) not in cursos:
             continue
         # AJUSTA O CPF
         if new_line_items[1].strip(' ') != '':
