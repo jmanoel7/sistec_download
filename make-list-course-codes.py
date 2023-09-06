@@ -1,4 +1,3 @@
-#!/usr/bin/env python3.11
 # -*- coding: utf-8 -*-
 
 import os
@@ -86,9 +85,11 @@ for campus in lista_campus:
 
                 raise KeyError
 
-    os.chdir('..')
+    os.chdir(os.path.pardir)
 
 file_course_codes.close()
 file_ead_course_codes.close()
+
+os.chdir(os.path.pardir)
 
 sys.exit(0)
