@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# create virtualenv 'sistec_download'
+./mkvenv.sh
+
 DIR_BASE="./sistec_cod_cursos/"
 
 FILE_CODE_IN="${DIR_BASE}/codes.txt"

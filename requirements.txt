@@ -1,2 +1,4 @@
 selenium
-ipython
+jupyterlab
+yapf
+isort
