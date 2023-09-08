@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
-# # to install pyenv execute the following:
+
+# to install pyenv execute the following:
+# -----BEGIN PYENV INSTALL-----
 # curl https://pyenv.run | bash
 # cat >>~/.bashrc<<EOF
 # export PYENV_ROOT="$HOME/.pyenv"
@@ -15,6 +17,14 @@ set -e
 #   libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 # pyenv install 3.11
 # pyenv local 3.11
+# -----END PYENV INSTALL-----
+
+# to install virtualenv sistec_download execute the following:
+# -----BEGIN VIRTUALENV INSTALL-----
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 pyenv shell 3.11
 pyenv virtualenv-delete -f sistec_download
 pyenv virtualenv sistec_download
@@ -22,4 +32,6 @@ pyenv local sistec_download
 pyenv activate sistec_download
 python3.11 -m pip install -U pip
 python3.11 -m pip install -U -r requirements.txt
+# -----END VIRTUALENV INSTALL-----
+
 exit 0
