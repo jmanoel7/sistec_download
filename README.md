@@ -1,5 +1,5 @@
 # sistec_download
-## sistec_download: coleta planilhas do SISTEC de forma automática (https://sistec.mec.gov.br)
+## sistec_download: coleta e filtra planilhas do SISTEC de forma automática (https://sistec.mec.gov.br)
 
 ### Baixe o código fonte via https com git e entre no diretório do repositório:
 ```sh
