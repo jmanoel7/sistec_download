@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 # create and use virtualenv 'sistec_download'
 ./mkvenv.sh
@@ -53,3 +52,4 @@ sed -i '/\# -----BEGIN DISTANCE COURSE CODES-----/,/\# -----END DISTANCE COURSE 
 # execute tweaks ...
 
 
+exit 0
