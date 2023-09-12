@@ -1,10 +1,10 @@
+#!/usr/bin/env python3.10
 # -*- coding: utf-8 -*-
 
 
 import os
-import sys
 import re
-
+import sys
 
 planilhas = {
     u'CÂMPUS ÁGUAS LINDAS.csv': 3647,

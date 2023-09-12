@@ -101,11 +101,8 @@ ENV/
 .mypy_cache/
 
 # dados privados da instituicao de ensino
-campi/
-sistec_cod_cursos/
-ead/
-presencial/
-planilhas/
+sistec_course_codes/
+sistec_audit/
 sql/
 *.csv
 *.sql

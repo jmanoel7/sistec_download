@@ -1,24 +1,37 @@
+#!/usr/bin/env python3.10
 # -*- coding: utf-8 -*-
 
 
 import os
+import shutil
+import sys
 from time import sleep
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.support.select import Select
-from selenium.webdriver.common.keys import Keys
-from browser import get_browser
 
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.select import Select
+
+user_path = os.getenv('HOME')
+download_path = os.path.join(user_path, 'Downloads')
+
+git_project_path = os.getenv('GIT_PROJECT_PATH')
+sistec_audit_path = os.path.join(git_project_path, 'sistec_audit_path')
+spreadsheets_path = os.path.join(sistec_audit_path, 'presencial')
+spreadsheets_ead_path = os.path.join(sistec_audit_path, 'ead')
+os.mkdir(sistec_audit_path)
+os.mkdir(spreadsheets_path)
+os.mkdir(spreadsheets_ead_path)
 
 get_browser().get('https://sistec.mec.gov.br/')
 time_out = 2.5
 sleep(time_out)
 
 # Entrada de selecionar perfis
-xpath = '//*[@id="tipo"]'
+xpath = '/html/body/div[1]/div[3]/div/div[3]/div/div/form/div/fieldset/div/select'
 while True:
     try:
-        select_element = get_browser().find_element(By.XPATH, xpath)
+        select_element = get_browser().find_element(by=By.XPATH, value=xpath)
     except NoSuchElementException:
         sleep(time_out)
         continue
@@ -46,95 +59,97 @@ for campus in campi.items():
 
     # seleciona o campus
     xpath = '/html/body/div[1]/div[3]/div/div[3]/div/div/form/div/fieldset/div/select'
-    select_element = get_browser().find_element(By.XPATH, xpath)
+    select_element = get_browser().find_element(by=By.XPATH, value=xpath)
     select_object = Select(select_element)
     select_object.select_by_value(campus[1])
     sleep(time_out)
 
     # clica no botão acessar
     xpath = '/html/body/div[1]/div[3]/div/div[3]/div/div/form/div/fieldset/input'
-    sistec_element = get_browser().find_element(By.XPATH, xpath)
-    sistec_element.click()
+    access_button = get_browser().find_element(by=By.XPATH, value=xpath)
+    access_button.click()
     sleep(time_out)
 
     # Janela de OK
     #  xpath = '/html/body/div[7]/div[1]/div[2]/div/div/div[2]'
     #  while True:
     #      try:
-    #          select_element = get_browser().find_element(By.XPATH, xpath)
+    #          ok_window = get_browser().find_element(by=By.XPATH, value=xpath)
     #      except NoSuchElementException:
     #          sleep(time_out)
     #          continue
-    #      select_element.click()
+    #      ok_window.click()
     #      break
 
     # clica na aba 'Ciclo de Matrícula'
     xpath = '/html/body/div[2]/div[1]/div[2]/ul[2]/li[3]/a'
     while True:
         try:
-            sistec_element = get_browser().find_element(By.XPATH, xpath)
+            ciclo_matricula = get_browser().find_element(by=By.XPATH, value=xpath)
         except NoSuchElementException:
             sleep(time_out)
             continue
         break
-    sistec_element.click()
+    ciclo_matricula.click()
     sleep(time_out)
 
     # clica na caixinha de '+' do aluno
     xpath = '/html/body/div[2]/div[3]/div[1]/div[3]/div/div/ul/li[2]/img[1]'
-    sistec_element = get_browser().find_element(By.XPATH, xpath)
-    sistec_element.click()
+    aluno_mais = get_browser().find_element(by=By.XPATH, value=xpath)
+    aluno_mais.click()
     sleep(time_out)
 
     # clicar em 'Pesquisar Aluno'
     xpath = '/html/body/div[2]/div[3]/div[1]/div[3]/div/div/ul/li[2]/ul/li[7]/span/a'
-    sistec_element = get_browser().find_element(By.XPATH, xpath)
-    sistec_element.click()
+    pesquisar_aluno = get_browser().find_element(by=By.XPATH, value=xpath)
+    pesquisar_aluno.click()
     sleep(time_out)
 
     # clicar em 'Registro Civil'
     xpath = '/html/body/div[2]/div[3]/div[3]/div[3]/form/div/div[5]/input[1]'
-    sistec_element = get_browser().find_element(By.XPATH, xpath)
-    sistec_element.click()
+    registro_civil = get_browser().find_element(by=By.XPATH, value=xpath)
+    registro_civil.click()
     sleep(time_out)
 
     # clicar em 'Parte do Nome'
     xpath = '/html/body/div[2]/div[3]/div[3]/div[3]/form/div/div[8]/input[2]'
-    sistec_element = get_browser().find_element(By.XPATH, xpath)
-    sistec_element.click()
+    parte_nome = get_browser().find_element(by=By.XPATH, value=xpath)
+    parte_nome.click()
     sleep(time_out)
 
     # inserir underline '_' no campo para pesquisa por parte do nome do aluno e dar <ENTER>
     xpath = '/html/body/div[2]/div[3]/div[3]/div[3]/form/div/div[6]/input'
-    sistec_element = get_browser().find_element(By.XPATH, xpath)
-    sistec_element.send_keys('_' + Keys.ENTER)
+    insert_underline = get_browser().find_element(by=By.XPATH, value=xpath)
+    insert_underline.send_keys('_' + Keys.ENTER)
     sleep(time_out)
 
     # clicar na lupa 'Pesquisar'
     xpath = '/html/body/div[2]/div[3]/div[3]/div[3]/form/div/div[10]/input[1]'
-    sistec_element = get_browser().find_element(By.XPATH, xpath)
-    sistec_element.click()
+    lupa_pesquisar = get_browser().find_element(by=By.XPATH, value=xpath)
+    lupa_pesquisar.click()
     sleep(time_out)
 
     # clique no ícone do excel 'Exportar csv'
     xpath = '/html/body/div[2]/div[3]/div[3]/div[5]/div[2]/div/a[5]/input'
     while True:
         try:
-            sistec_element = get_browser().find_element(By.XPATH, xpath)
+            excel_exportar_csv = get_browser().find_element(by=By.XPATH, value=xpath)
         except NoSuchElementException:
             sleep(time_out)
             continue
         break
-    sistec_element.click()
+    excel_exportar_csv.click()
     sleep(time_out)
 
     # renomeia o arquivo sistec.csv de acordo com o Campus selecionado
-    root_path = '/home/joaomanoel/Downloads/'
-    sistec_csv = os.path.join(root_path, 'sistec.csv')
-    campus_csv = os.path.join(root_path, campus[0] + '.csv')
+    sistec_csv = os.path.join(download_path, 'sistec.csv')
+    campus_csv = os.path.join(spreadsheets_path, campus[0] + '.csv')
+    campus_ead_csv = os.path.join(spreadsheets_ead_path, campus[0] + '.csv')
     while True:
         try:
-            os.rename(sistec_csv, campus_csv)
+            shutil.copyfile(sistec_csv, campus_csv)
+            shutil.copyfile(sistec_csv, campus_ead_csv)
+            os.remove(sistec_csv)
         except FileNotFoundError:
             sleep(time_out)
             continue
@@ -143,7 +158,8 @@ for campus in campi.items():
 
     # clicar em 'Alterar Perfil'
     xpath = '/html/body/div[2]/div[1]/div[2]/ul[3]/li[5]/a'
-    sistec_element = get_browser().find_element(By.XPATH, xpath)
+    sistec_element = get_browser().find_element(by=By.XPATH, value=xpath)
     sistec_element.click()
     sleep(time_out)
 
+sys.exit(0)

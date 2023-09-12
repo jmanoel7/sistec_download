@@ -1,9 +1,11 @@
+#!/usr/bin/env python3.10
 # -*- coding: utf-8 -*-
+
 
 import os
 import sys
 
-dir_base = os.path.join(os.getcwd(), 'sistec_cod_cursos')
+dir_base = os.path.join(os.getcwd(), 'sistec_course_codes')
 os.chdir(dir_base)
 
 file_name_course_codes = os.path.join(dir_base, 'codes.txt')

@@ -1,13 +1,17 @@
+#!/usr/bin/env python3.10
 # -*- coding: utf-8 -*-
+
 
 import os
 import shutil
 import sys
 from time import sleep
+
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.support.select import Select
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.select import Select
+
 from browser import get_browser
 
 get_browser().get('https://sistec.mec.gov.br/')
@@ -18,7 +22,7 @@ sleep(time_out)
 xpath = '/html/body/div[1]/div[3]/div/div[3]/div/div/form/div/fieldset/div/select'
 while True:
     try:
-        select_element = get_browser().find_element(By.XPATH, xpath)
+        select_element = get_browser().find_element(by=By.XPATH, value=xpath)
     except NoSuchElementException:
         sleep(time_out)
         continue
@@ -42,7 +46,7 @@ campi = {
     u'CÂMPUS VALPARAÍSO': '1660669'
 }
 
-dir_base = os.path.join(os.getcwd(), 'sistec_cod_cursos') # <- change here spreadsheets location (PUT THIS LOCATION INSIDE .gitignore)
+dir_base = os.path.join(os.getcwd(), 'sistec_course_codes') # <- change here spreadsheets location (PUT THIS LOCATION INSIDE .gitignore)
 downloads_path = '/home/joaomanoel/Downloads' # <-- change here downloads location
 
 for campus in campi.items():
@@ -52,14 +56,14 @@ for campus in campi.items():
 
     # seleciona o campus
     xpath = '/html/body/div[1]/div[3]/div/div[3]/div/div/form/div/fieldset/div/select'
-    select_element = get_browser().find_element(By.XPATH, xpath)
+    select_element = get_browser().find_element(by=By.XPATH, value=xpath)
     select_object = Select(select_element)
     select_object.select_by_value(campus[1])
     sleep(time_out)
 
     # clica no botão acessar
     xpath = '/html/body/div[1]/div[3]/div/div[3]/div/div/form/div/fieldset/input'
-    sistec_element = get_browser().find_element(By.XPATH, xpath)
+    sistec_element = get_browser().find_element(by=By.XPATH, value=xpath)
     sistec_element.click()
     sleep(time_out)
 
@@ -67,7 +71,7 @@ for campus in campi.items():
     #  xpath = '/html/body/div[7]/div[1]/div[2]/div/div/div[2]'
     #  while True:
     #      try:
-    #          select_element = get_browser().find_element(By.XPATH, xpath)
+    #          select_element = get_browser().find_element(by=By.XPATH, value=xpath)
     #      except NoSuchElementException:
     #          sleep(time_out)
     #          continue
@@ -78,7 +82,7 @@ for campus in campi.items():
     xpath = '/html/body/div[2]/div[1]/div[2]/ul[2]/li[6]/a'
     while True:
         try:
-            courses_tab = get_browser().find_element(By.XPATH, xpath)
+            courses_tab = get_browser().find_element(by=By.XPATH, value=xpath)
         except NoSuchElementException:
             sleep(time_out)
             continue
@@ -90,7 +94,7 @@ for campus in campi.items():
     xpath = '/html/body/div[2]/div[3]/div[1]/div[3]/div/div/ul/li/img[1]'
     while True:
         try:
-            option_cadastro = get_browser().find_element(By.XPATH, xpath)
+            option_cadastro = get_browser().find_element(by=By.XPATH, value=xpath)
         except NoSuchElementException:
             sleep(time_out)
             continue
@@ -102,7 +106,7 @@ for campus in campi.items():
     xpath = '/html/body/div[2]/div[3]/div[1]/div[3]/div/div/ul/li/ul/li[1]/img[2]'
     while True:
         try:
-            option_outros_cursos = get_browser().find_element(By.XPATH, xpath)
+            option_outros_cursos = get_browser().find_element(by=By.XPATH, value=xpath)
         except NoSuchElementException:
             sleep(time_out)
             continue
@@ -114,7 +118,7 @@ for campus in campi.items():
     xpath = '/html/body/div[2]/div[3]/div[1]/div[3]/div/div/ul/li/ul/li[1]/ul/li[1]/span/a'
     while True:
         try:
-            option_listar_existentes = get_browser().find_element(By.XPATH, xpath)
+            option_listar_existentes = get_browser().find_element(by=By.XPATH, value=xpath)
         except NoSuchElementException:
             sleep(time_out)
             continue
@@ -126,7 +130,7 @@ for campus in campi.items():
     xpath = '/html/body/div[2]/div[3]/div[3]/div[5]/div[2]/div/input[2]'
     while True:
         try:
-            excel_exportar_csv = get_browser().find_element(By.XPATH, xpath)
+            excel_exportar_csv = get_browser().find_element(by=By.XPATH, value=xpath)
         except NoSuchElementException:
             sleep(time_out)
             continue
@@ -149,7 +153,7 @@ for campus in campi.items():
     xpath = '/html/body/div[2]/div[3]/div[1]/div[3]/div/div/ul/li/ul/li[6]/img[2]'
     while True:
         try:
-            option_cursos_tecnicos = get_browser().find_element(By.XPATH, xpath)
+            option_cursos_tecnicos = get_browser().find_element(by=By.XPATH, value=xpath)
         except NoSuchElementException:
             sleep(time_out)
             continue
@@ -161,7 +165,7 @@ for campus in campi.items():
     xpath = '/html/body/div[2]/div[3]/div[1]/div[3]/div/div/ul/li/ul/li[6]/ul/li/span/a'
     while True:
         try:
-            option_listar_existentes = get_browser().find_element(By.XPATH, xpath)
+            option_listar_existentes = get_browser().find_element(by=By.XPATH, value=xpath)
         except NoSuchElementException:
             sleep(time_out)
             continue
@@ -173,7 +177,7 @@ for campus in campi.items():
     xpath = '/html/body/div[2]/div[3]/div[3]/div[3]/form/div[1]/div/input[2]'
     while True:
         try:
-            radio_button_regular = get_browser().find_element(By.XPATH, xpath)
+            radio_button_regular = get_browser().find_element(by=By.XPATH, value=xpath)
         except NoSuchElementException:
             sleep(time_out)
             continue
@@ -185,7 +189,7 @@ for campus in campi.items():
     xpath = '/html/body/div[2]/div[3]/div[3]/div[3]/form/div[5]/div/input[1]'
     while True:
         try:
-            radio_button_ativo = get_browser().find_element(By.XPATH, xpath)
+            radio_button_ativo = get_browser().find_element(by=By.XPATH, value=xpath)
         except NoSuchElementException:
             sleep(time_out)
             continue
@@ -197,7 +201,7 @@ for campus in campi.items():
     xpath = '/html/body/div[2]/div[3]/div[3]/div[3]/div[1]/input[1]'
     while True:
         try:
-            option_pesquisar = get_browser().find_element(By.XPATH, xpath)
+            option_pesquisar = get_browser().find_element(by=By.XPATH, value=xpath)
         except NoSuchElementException:
             sleep(time_out)
             continue
@@ -209,7 +213,7 @@ for campus in campi.items():
     xpath = '/html/body/div[2]/div[3]/div[3]/div[5]/div[2]/div[1]/input[2]'
     while True:
         try:
-            excel_exportar_csv = get_browser().find_element(By.XPATH, xpath)
+            excel_exportar_csv = get_browser().find_element(by=By.XPATH, value=xpath)
         except NoSuchElementException:
             sleep(time_out)
             continue
@@ -230,7 +234,7 @@ for campus in campi.items():
 
     # clicar em 'Alterar Perfil'
     xpath = '/html/body/div[2]/div[1]/div[2]/ul[3]/li[5]/a'
-    sistec_element = get_browser().find_element(By.XPATH, xpath)
+    sistec_element = get_browser().find_element(by=By.XPATH, value=xpath)
     sistec_element.click()
     sleep(time_out)
 

@@ -1,19 +1,18 @@
 # -*- coding: utf-8 -*-
 
 
-from time import strftime
 from selenium import webdriver
-from selenium.webdriver.chromium.options import ChromiumOptions as Options
-from selenium.webdriver.chromium.service import ChromiumService as Service
-
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 BROWSER = None
 
 
 def start_browser():
     options = Options()
-    options.binary_location = '/usr/bin/chromium'
-    service = Service('/usr/bin/chromedriver', start_error_message='%s\t' % strftime('[%Y-%m-%d %H:%M:%S]'))
+    options.binary_location = '/home/joaomanoel/.local/chrome-linux64/chrome'
+    options.add_argument('--start-maximized')
+    service = Service('/home/joaomanoel/.local/bin/chromedriver')
     browser = webdriver.Chrome(service=service, options=options)
     return browser
 

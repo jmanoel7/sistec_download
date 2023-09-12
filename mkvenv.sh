@@ -25,13 +25,13 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-pyenv shell 3.11
+pyenv shell 3.10
 pyenv virtualenv-delete -f sistec_download
 pyenv virtualenv sistec_download
 pyenv local sistec_download
 pyenv activate sistec_download
-python3.11 -m pip install -U pip
-python3.11 -m pip install -U -r requirements.txt
+python3.10 -m pip install -U pip
+python3.10 -m pip install -U -r requirements.txt
 # -----END VIRTUALENV INSTALL-----
 
 exit 0
