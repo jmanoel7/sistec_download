@@ -1,4 +1,0 @@
-selenium==4.9.1
-jupyterlab==4.0.5
-yapf==0.40.1
-isort==5.12.0
