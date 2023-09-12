@@ -2,11 +2,13 @@
 set -e
 
 # create and use virtualenv 'sistec_download'
-./mkvenv.sh
+# ./mkvenv.sh
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+pyenv shell 3.11
+pyenv local sistec_download
 pyenv activate sistec_download
 
 # export vars
@@ -20,8 +22,12 @@ export FILE_EAD_TWO_CODE_OUT="${DIR_BASE}/codes_ead_two_sort.txt"
 export GIT_PROJECT_PATH="${HOME}/git/ifg/sistec_download"
 
 # clean and mkdir dirbase
-rm -rf "$DIR_BASE"
-mkdir -p "$DIR_BASE"
+# rm -rf "$DIR_BASE"
+# mkdir -p "$DIR_BASE"
+
+# clean sistec_csv* and cursos_tecnicos* from user's home
+rm -f ~/Downloads/sistec_csv*
+rm -f ~/Downloads/cursos_tecnicos*
 
 # python3.11 bot get course codes from sistec.mec.gov.br
 ./bot_get_course_codes.py

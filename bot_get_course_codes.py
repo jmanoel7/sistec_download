@@ -7,13 +7,33 @@ import shutil
 import sys
 from time import sleep
 
-from selenium.common.exceptions import NoSuchElementException
+import pyautogui as pg
+from selenium.common.exceptions import (ElementClickInterceptedException,
+                                        ElementNotInteractableException,
+                                        NoSuchElementException)
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
 
 from browser import get_browser
 
+
+def clear_downloads(m_browser, m_time_out):
+    sleep(m_time_out)
+    main_window = m_browser.current_window_handle
+    m_browser.switch_to.new_window('tab')
+    m_browser.get('about:downloads')
+    max_x, max_y = pg.size()
+    pg.click(x=max_x/2.0, y=max_y/2.0, duration=1.0, button='right')
+    sleep(1.0)
+    pg.press('C')
+    sleep(m_time_out)
+    m_browser.close()
+    m_browser.switch_to.window(main_window)
+    return None
+
+
+get_browser().maximize_window()
 get_browser().get('https://sistec.mec.gov.br/')
 time_out = 2.5
 sleep(time_out)
@@ -30,15 +50,15 @@ while True:
 
 # Códigos do Campus do IFG
 campi = {
-    u'CÂMPUS ÁGUAS LINDAS': '1660670',
-    u'CÂMPUS ANÁPOLIS': '1660636',
-    u'CÂMPUS APARECIDA DE GOIÂNIA': '1660641',
-    u'CÂMPUS CIDADE DE GOIÁS': '1660637',
-    u'CÂMPUS FORMOSA': '1660650',
-    u'CÂMPUS GOIÂNIA': '1660652',
-    u'CÂMPUS GOIÂNIA OESTE': '1660653',
-    u'CÂMPUS INHUMAS': '1660662',
-    u'CÂMPUS ITUMBIARA': '1660663',
+    #  u'CÂMPUS ÁGUAS LINDAS': '1660670',
+    #  u'CÂMPUS ANÁPOLIS': '1660636',
+    #  u'CÂMPUS APARECIDA DE GOIÂNIA': '1660641',
+    #  u'CÂMPUS CIDADE DE GOIÁS': '1660637',
+    #  u'CÂMPUS FORMOSA': '1660650',
+    #  u'CÂMPUS GOIÂNIA': '1660652',
+    #  u'CÂMPUS GOIÂNIA OESTE': '1660653',
+    #  u'CÂMPUS INHUMAS': '1660662',
+    #  u'CÂMPUS ITUMBIARA': '1660663',
     u'CÂMPUS JATAÍ': '1660664',
     u'CÂMPUS LUZIÂNIA': '1660666',
     u'CÂMPUS SENADOR CANEDO': '1662833',
@@ -51,8 +71,12 @@ downloads_path = '/home/joaomanoel/Downloads' # <-- change here downloads locati
 
 for campus in campi.items():
 
-    dir_campus = os.path.join(dir_base, campus[0])
-    os.mkdir(dir_campus, mode=0o755)
+    try:
+        dir_campus = os.path.join(dir_base, campus[0])
+        os.removedirs(dir_campus)
+        os.makedirs(dir_campus, mode=0o755)
+    except Exception:
+        pass
 
     # seleciona o campus
     xpath = '/html/body/div[1]/div[3]/div/div[3]/div/div/form/div/fieldset/div/select'
@@ -98,8 +122,17 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
+        while True:
+            try:
+                option_cadastro.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
         break
-    option_cadastro.click()
     sleep(time_out)
 
     # no 'Menu Cursos' clique na caixinha '+' da opção 'Outros Cursos'
@@ -110,8 +143,17 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
+        while True:
+            try:
+                option_outros_cursos.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
         break
-    option_outros_cursos.click()
     sleep(time_out)
 
     # no 'Menu Cursos' clique na opção 'Listar Existentes'
@@ -122,8 +164,17 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
+        while True:
+            try:
+                option_listar_existentes.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
         break
-    option_listar_existentes.click()
     sleep(time_out)
 
     # clique no ícone do excel 'Exportar .csv'
@@ -134,9 +185,20 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
+        while True:
+            try:
+                excel_exportar_csv.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
         break
-    excel_exportar_csv.click()
     sleep(time_out)
+
+    clear_downloads(get_browser(), time_out)
 
     # move o arquivo sistec_csv.csv do diretório de downloads para o diretório do câmpus atual
     file_sistec_csv = os.path.join(downloads_path, 'sistec_csv.csv')
@@ -157,8 +219,17 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
+        while True:
+            try:
+                option_cursos_tecnicos.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
         break
-    option_cursos_tecnicos.click()
     sleep(time_out)
 
     # no 'Menu Cursos' clique na opção 'Listar Existentes'
@@ -169,8 +240,17 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
+        while True:
+            try:
+                option_listar_existentes.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
         break
-    option_listar_existentes.click()
     sleep(time_out)
 
     # na tela principal que se abriu, escolha a Oferta 'Regular' (input type radio button)
@@ -181,8 +261,17 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
+        while True:
+            try:
+                radio_button_regular.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
         break
-    radio_button_regular.click()
     sleep(time_out)
 
     # na tela principal que se abriu, escolha a Situação 'Ativo' (input type radio button)
@@ -193,8 +282,17 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
+        while True:
+            try:
+                radio_button_ativo.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
         break
-    radio_button_ativo.click()
     sleep(time_out)
 
     # na tela principal que se abriu, clique na opção 'Pesquisar'
@@ -205,8 +303,17 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
+        while True:
+            try:
+                option_pesquisar.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
         break
-    option_pesquisar.click()
     sleep(time_out)
 
     # clique no ícone do excel 'Exportar .csv'
@@ -217,9 +324,20 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
+        while True:
+            try:
+                excel_exportar_csv.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
         break
-    excel_exportar_csv.click()
     sleep(time_out)
+
+    clear_downloads(get_browser(), time_out)
 
     # move o arquivo cursos_tecnicos.csv do diretório de downloads para o diretório do câmpus atual
     file_cursos_tecnicos = os.path.join(downloads_path, 'cursos_tecnicos.csv')

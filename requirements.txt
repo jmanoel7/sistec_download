@@ -1,4 +1,5 @@
 selenium
+pyautogui
 jupyterlab
 yapf
 isort
