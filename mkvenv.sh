@@ -27,13 +27,13 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 pyenv shell 3.11
-pyenv virtualenv-delete -f sistec_download
+pyenv virtualenv-delete --force sistec_download
 pyenv virtualenv sistec_download
-pyenv local sistec_download
 pyenv activate sistec_download
 python3.11 -m pip install -U pep517
 python3.11 -m pip install --use-pep517 -U pip
 python3.11 -m pip install --use-pep517 -U -r requirements.txt
+pyenv local sistec_download
 # -----END VIRTUALENV INSTALL-----
 
 exit 0

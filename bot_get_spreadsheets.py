@@ -12,17 +12,45 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
 
-user_path = os.getenv('HOME')
-download_path = os.path.join(user_path, 'Downloads')
 
+def clear_downloads(m_browser, m_time_out):
+    sleep(m_time_out)
+    main_window = m_browser.current_window_handle
+    m_browser.switch_to.new_window('tab')
+    m_browser.get('about:downloads')
+    max_x, max_y = pg.size()
+    pg.click(x=max_x/2.0, y=max_y/2.0, duration=1.0, button='right')
+    sleep(1.0)
+    pg.press('C')
+    sleep(m_time_out)
+    m_browser.close()
+    m_browser.switch_to.window(main_window)
+    return None
+
+
+user_path = os.getenv('HOME')
+downloads_path = os.path.join(user_path, 'Downloads') # <- change here downloads location
 git_project_path = os.getenv('GIT_PROJECT_PATH')
-sistec_audit_path = os.path.join(git_project_path, 'sistec_audit_path')
+sistec_audit_path = os.path.join(git_project_path, 'sistec_audit') # <- change here spreadsheets (sistec data) location (PUT THIS LOCATION INSIDE .gitignore)
 spreadsheets_path = os.path.join(sistec_audit_path, 'presencial')
 spreadsheets_ead_path = os.path.join(sistec_audit_path, 'ead')
-os.mkdir(sistec_audit_path)
-os.mkdir(spreadsheets_path)
-os.mkdir(spreadsheets_ead_path)
 
+try:
+    os.mkdir(sistec_audit_path, mode=0o755)
+except FileExistsError:
+    os.chmod(sistec_audit_path, mode=0o755)
+
+try:
+    os.mkdir(spreadsheets_path, mode=0o755)
+except FileExistsError:
+    os.chmod(spreadsheets_path, mode=0o755)
+
+try:
+    os.mkdir(spreadsheets_ead_path, mode=0o755)
+except FileExistsError:
+    os.chmod(spreadsheets_ead_path, mode=0o755)
+
+get_browser().maximize_window()
 get_browser().get('https://sistec.mec.gov.br/')
 time_out = 2.5
 sleep(time_out)
@@ -85,18 +113,33 @@ for campus in campi.items():
     xpath = '/html/body/div[2]/div[1]/div[2]/ul[2]/li[3]/a'
     while True:
         try:
-            ciclo_matricula = get_browser().find_element(by=By.XPATH, value=xpath)
+            ciclo_matricula_tab = get_browser().find_element(by=By.XPATH, value=xpath)
         except NoSuchElementException:
             sleep(time_out)
             continue
         break
-    ciclo_matricula.click()
+    ciclo_matricula_tab.click()
     sleep(time_out)
 
     # clica na caixinha de '+' do aluno
     xpath = '/html/body/div[2]/div[3]/div[1]/div[3]/div/div/ul/li[2]/img[1]'
-    aluno_mais = get_browser().find_element(by=By.XPATH, value=xpath)
-    aluno_mais.click()
+    while True:
+        try:
+            aluno_mais = get_browser().find_element(by=By.XPATH, value=xpath)
+        except NoSuchElementException:
+            sleep(time_out)
+            continue
+        while True:
+            try:
+                aluno_mais.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
+        break
     sleep(time_out)
 
     # clicar em 'Pesquisar Aluno'
@@ -149,11 +192,11 @@ for campus in campi.items():
         try:
             shutil.copyfile(sistec_csv, campus_csv)
             shutil.copyfile(sistec_csv, campus_ead_csv)
-            os.remove(sistec_csv)
         except FileNotFoundError:
             sleep(time_out)
             continue
         break
+    os.remove(sistec_csv)
     sleep(time_out)
 
     # clicar em 'Alterar Perfil'

@@ -33,6 +33,10 @@ def clear_downloads(m_browser, m_time_out):
     return None
 
 
+user_path = os.getenv('HOME')
+downloads_path = os.path.join(user_path, 'Downloads') # <- change here downloads location
+dir_base = os.path.join(os.getcwd(), 'sistec_course_codes') # <- change here spreadsheets (course codes) location (PUT THIS LOCATION INSIDE .gitignore)
+
 get_browser().maximize_window()
 get_browser().get('https://sistec.mec.gov.br/')
 time_out = 2.5
@@ -50,15 +54,15 @@ while True:
 
 # Códigos do Campus do IFG
 campi = {
-    #  u'CÂMPUS ÁGUAS LINDAS': '1660670',
-    #  u'CÂMPUS ANÁPOLIS': '1660636',
-    #  u'CÂMPUS APARECIDA DE GOIÂNIA': '1660641',
-    #  u'CÂMPUS CIDADE DE GOIÁS': '1660637',
-    #  u'CÂMPUS FORMOSA': '1660650',
-    #  u'CÂMPUS GOIÂNIA': '1660652',
-    #  u'CÂMPUS GOIÂNIA OESTE': '1660653',
-    #  u'CÂMPUS INHUMAS': '1660662',
-    #  u'CÂMPUS ITUMBIARA': '1660663',
+    u'CÂMPUS ÁGUAS LINDAS': '1660670',
+    u'CÂMPUS ANÁPOLIS': '1660636',
+    u'CÂMPUS APARECIDA DE GOIÂNIA': '1660641',
+    u'CÂMPUS CIDADE DE GOIÁS': '1660637',
+    u'CÂMPUS FORMOSA': '1660650',
+    u'CÂMPUS GOIÂNIA': '1660652',
+    u'CÂMPUS GOIÂNIA OESTE': '1660653',
+    u'CÂMPUS INHUMAS': '1660662',
+    u'CÂMPUS ITUMBIARA': '1660663',
     u'CÂMPUS JATAÍ': '1660664',
     u'CÂMPUS LUZIÂNIA': '1660666',
     u'CÂMPUS SENADOR CANEDO': '1662833',
@@ -66,17 +70,15 @@ campi = {
     u'CÂMPUS VALPARAÍSO': '1660669'
 }
 
-dir_base = os.path.join(os.getcwd(), 'sistec_course_codes') # <- change here spreadsheets location (PUT THIS LOCATION INSIDE .gitignore)
-downloads_path = '/home/joaomanoel/Downloads' # <-- change here downloads location
-
 for campus in campi.items():
 
+    # clear and create dir_campus
+    dir_campus = os.path.join(dir_base, campus[0])
     try:
-        dir_campus = os.path.join(dir_base, campus[0])
         os.removedirs(dir_campus)
-        os.makedirs(dir_campus, mode=0o755)
-    except Exception:
+    except FileNotFoundError:
         pass
+    os.makedirs(dir_campus, mode=0o755)
 
     # seleciona o campus
     xpath = '/html/body/div[1]/div[3]/div/div[3]/div/div/form/div/fieldset/div/select'
@@ -87,19 +89,19 @@ for campus in campi.items():
 
     # clica no botão acessar
     xpath = '/html/body/div[1]/div[3]/div/div[3]/div/div/form/div/fieldset/input'
-    sistec_element = get_browser().find_element(by=By.XPATH, value=xpath)
-    sistec_element.click()
+    access_button = get_browser().find_element(by=By.XPATH, value=xpath)
+    access_button.click()
     sleep(time_out)
 
     # Janela de OK
     #  xpath = '/html/body/div[7]/div[1]/div[2]/div/div/div[2]'
     #  while True:
     #      try:
-    #          select_element = get_browser().find_element(by=By.XPATH, value=xpath)
+    #          ok_window = get_browser().find_element(by=By.XPATH, value=xpath)
     #      except NoSuchElementException:
     #          sleep(time_out)
     #          continue
-    #      select_element.click()
+    #      ok_window.click()
     #      break
 
     # clique na aba 'Cursos'
@@ -356,4 +358,5 @@ for campus in campi.items():
     sistec_element.click()
     sleep(time_out)
 
+get_browser().quit()
 sys.exit(0)
