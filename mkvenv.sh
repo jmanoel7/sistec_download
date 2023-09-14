@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 # to install pyenv execute the following:
 # -----BEGIN PYENV INSTALL-----

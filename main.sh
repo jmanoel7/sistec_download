@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 # create and use virtualenv 'sistec_download'
 # ./mkvenv.sh
