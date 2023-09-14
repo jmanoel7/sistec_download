@@ -15,6 +15,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
 
+from browser import get_browser
+
 
 def clear_downloads(m_browser, m_time_out):
     sleep(m_time_out)
