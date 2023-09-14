@@ -130,9 +130,6 @@ for campus in campi.items():
             except ElementNotInteractableException:
                 sleep(time_out)
                 continue
-            except ElementClickInterceptedException:
-                sleep(time_out)
-                continue
             break
         break
     sleep(time_out)
@@ -149,9 +146,6 @@ for campus in campi.items():
             try:
                 option_outros_cursos.click()
             except ElementNotInteractableException:
-                sleep(time_out)
-                continue
-            except ElementClickInterceptedException:
                 sleep(time_out)
                 continue
             break
@@ -172,9 +166,6 @@ for campus in campi.items():
             except ElementNotInteractableException:
                 sleep(time_out)
                 continue
-            except ElementClickInterceptedException:
-                sleep(time_out)
-                continue
             break
         break
     sleep(time_out)
@@ -190,9 +181,6 @@ for campus in campi.items():
         while True:
             try:
                 excel_exportar_csv.click()
-            except ElementNotInteractableException:
-                sleep(time_out)
-                continue
             except ElementClickInterceptedException:
                 sleep(time_out)
                 continue
@@ -227,9 +215,6 @@ for campus in campi.items():
             except ElementNotInteractableException:
                 sleep(time_out)
                 continue
-            except ElementClickInterceptedException:
-                sleep(time_out)
-                continue
             break
         break
     sleep(time_out)
@@ -248,9 +233,6 @@ for campus in campi.items():
             except ElementNotInteractableException:
                 sleep(time_out)
                 continue
-            except ElementClickInterceptedException:
-                sleep(time_out)
-                continue
             break
         break
     sleep(time_out)
@@ -263,17 +245,8 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
-        while True:
-            try:
-                radio_button_regular.click()
-            except ElementNotInteractableException:
-                sleep(time_out)
-                continue
-            except ElementClickInterceptedException:
-                sleep(time_out)
-                continue
-            break
         break
+    radio_button_regular.click()
     sleep(time_out)
 
     # na tela principal que se abriu, escolha a Situação 'Ativo' (input type radio button)
@@ -284,17 +257,8 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
-        while True:
-            try:
-                radio_button_ativo.click()
-            except ElementNotInteractableException:
-                sleep(time_out)
-                continue
-            except ElementClickInterceptedException:
-                sleep(time_out)
-                continue
-            break
         break
+    radio_button_ativo.click()
     sleep(time_out)
 
     # na tela principal que se abriu, clique na opção 'Pesquisar'
@@ -305,17 +269,8 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
-        while True:
-            try:
-                option_pesquisar.click()
-            except ElementNotInteractableException:
-                sleep(time_out)
-                continue
-            except ElementClickInterceptedException:
-                sleep(time_out)
-                continue
-            break
         break
+    option_pesquisar.click()
     sleep(time_out)
 
     # clique no ícone do excel 'Exportar .csv'
@@ -329,9 +284,6 @@ for campus in campi.items():
         while True:
             try:
                 excel_exportar_csv.click()
-            except ElementNotInteractableException:
-                sleep(time_out)
-                continue
             except ElementClickInterceptedException:
                 sleep(time_out)
                 continue

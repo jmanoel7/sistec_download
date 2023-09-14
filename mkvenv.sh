@@ -21,13 +21,14 @@ set -e
 
 # to install virtualenv sistec_download execute the following:
 # -----BEGIN VIRTUALENV INSTALL-----
-rm -f "$PWD/.python-version"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+rm -f "$PWD/.python-version"
+pyenv deactivate sistec_download
 pyenv shell 3.11
-pyenv virtualenv-delete --force sistec_download
+pyenv virtualenv-delete -f sistec_download
 pyenv virtualenv sistec_download
 pyenv activate sistec_download
 python3.11 -m pip install -U pep517

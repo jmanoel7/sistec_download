@@ -7,7 +7,10 @@ import shutil
 import sys
 from time import sleep
 
-from selenium.common.exceptions import NoSuchElementException
+import pyautogui as pg
+from selenium.common.exceptions import (ElementClickInterceptedException,
+                                        ElementNotInteractableException,
+                                        NoSuchElementException)
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
@@ -135,40 +138,73 @@ for campus in campi.items():
             except ElementNotInteractableException:
                 sleep(time_out)
                 continue
-            except ElementClickInterceptedException:
-                sleep(time_out)
-                continue
             break
         break
     sleep(time_out)
 
     # clicar em 'Pesquisar Aluno'
     xpath = '/html/body/div[2]/div[3]/div[1]/div[3]/div/div/ul/li[2]/ul/li[7]/span/a'
-    pesquisar_aluno = get_browser().find_element(by=By.XPATH, value=xpath)
-    pesquisar_aluno.click()
+    while True:
+        try:
+            pesquisar_aluno = get_browser().find_element(by=By.XPATH, value=xpath)
+        except NoSuchElementException:
+            sleep(time_out)
+            continue
+        while True:
+            try:
+                pesquisar_aluno.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            break
+        break
     sleep(time_out)
 
     # clicar em 'Registro Civil'
     xpath = '/html/body/div[2]/div[3]/div[3]/div[3]/form/div/div[5]/input[1]'
-    registro_civil = get_browser().find_element(by=By.XPATH, value=xpath)
+    while True:
+        try:
+            registro_civil = get_browser().find_element(by=By.XPATH, value=xpath)
+        except NoSuchElementException:
+            sleep(time_out)
+            continue
+        break
     registro_civil.click()
     sleep(time_out)
 
     # clicar em 'Parte do Nome'
     xpath = '/html/body/div[2]/div[3]/div[3]/div[3]/form/div/div[8]/input[2]'
-    parte_nome = get_browser().find_element(by=By.XPATH, value=xpath)
+    while True:
+        try:
+            parte_nome = get_browser().find_element(by=By.XPATH, value=xpath)
+        except NoSuchElementException:
+            sleep(time_out)
+            continue
+        break
     parte_nome.click()
     sleep(time_out)
 
     # inserir underline '_' no campo para pesquisa por parte do nome do aluno e dar <ENTER>
     xpath = '/html/body/div[2]/div[3]/div[3]/div[3]/form/div/div[6]/input'
-    insert_underline = get_browser().find_element(by=By.XPATH, value=xpath)
+    while True:
+        try:
+            insert_underline = get_browser().find_element(by=By.XPATH, value=xpath)
+        except NoSuchElementException:
+            sleep(time_out)
+            continue
+        break
     insert_underline.send_keys('_' + Keys.ENTER)
     sleep(time_out)
 
     # clicar na lupa 'Pesquisar'
     xpath = '/html/body/div[2]/div[3]/div[3]/div[3]/form/div/div[10]/input[1]'
-    lupa_pesquisar = get_browser().find_element(by=By.XPATH, value=xpath)
+    while True:
+        try:
+            lupa_pesquisar = get_browser().find_element(by=By.XPATH, value=xpath)
+        except NoSuchElementException:
+            sleep(time_out)
+            continue
+        break
     lupa_pesquisar.click()
     sleep(time_out)
 
@@ -180,12 +216,20 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
+        while True:
+            try:
+                excel_exportar_csv.click()
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
         break
-    excel_exportar_csv.click()
     sleep(time_out)
 
+    clear_downloads(get_browser(), time_out)
+
     # renomeia o arquivo sistec.csv de acordo com o Campus selecionado
-    sistec_csv = os.path.join(download_path, 'sistec.csv')
+    sistec_csv = os.path.join(downloads_path, 'sistec.csv')
     campus_csv = os.path.join(spreadsheets_path, campus[0] + '.csv')
     campus_ead_csv = os.path.join(spreadsheets_ead_path, campus[0] + '.csv')
     while True:
@@ -205,4 +249,5 @@ for campus in campi.items():
     sistec_element.click()
     sleep(time_out)
 
+get_browser().quit()
 sys.exit(0)
