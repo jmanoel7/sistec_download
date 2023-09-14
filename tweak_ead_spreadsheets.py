@@ -23,6 +23,8 @@ planilhas = {
     u'CÂMPUS VALPARAÍSO.csv': 3649
 }
 
+print('\n\n-----INÍCIO: AJUSTES EM PLANILHAS DE CURSOS EAD-----\n\n')
+
 for item in planilhas.items():
     print(item[0])
     print('INÍCIO')
@@ -108,3 +110,5 @@ for item in planilhas.items():
     file_csv.flush()
     file_csv.close()
     print('FIM')
+
+print('\n\n-----FIM: AJUSTES EM PLANILHAS DE CURSOS EAD-----\n\n')
