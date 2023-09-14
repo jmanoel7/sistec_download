@@ -5,28 +5,13 @@
 import os
 import sys
 
+from campus import campus_list as lista_campus
+
 dir_base = os.path.join(os.getcwd(), 'sistec_course_codes')
 os.chdir(dir_base)
 
 file_name_course_codes = os.path.join(dir_base, 'codes.txt')
 file_name_ead_course_codes = os.path.join(dir_base, 'codes_ead.txt')
-
-lista_campus = [
-    u'CÂMPUS ÁGUAS LINDAS',
-    u'CÂMPUS ANÁPOLIS',
-    u'CÂMPUS APARECIDA DE GOIÂNIA',
-    u'CÂMPUS CIDADE DE GOIÁS',
-    u'CÂMPUS FORMOSA',
-    u'CÂMPUS GOIÂNIA',
-    u'CÂMPUS GOIÂNIA OESTE',
-    u'CÂMPUS INHUMAS',
-    u'CÂMPUS ITUMBIARA',
-    u'CÂMPUS JATAÍ',
-    u'CÂMPUS LUZIÂNIA',
-    u'CÂMPUS SENADOR CANEDO',
-    u'CÂMPUS URUAÇU',
-    u'CÂMPUS VALPARAÍSO'
-]
 
 file_course_codes = open(file_name_course_codes, 'w')
 file_ead_course_codes = open(file_name_ead_course_codes, 'w')
