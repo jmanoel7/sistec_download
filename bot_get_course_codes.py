@@ -17,22 +17,7 @@ from selenium.webdriver.support.select import Select
 
 from browser import get_browser
 from campus import campus_dict as campi
-
-
-def clear_downloads(m_browser, m_time_out):
-    sleep(m_time_out)
-    main_window = m_browser.current_window_handle
-    m_browser.switch_to.new_window('tab')
-    m_browser.get('about:downloads')
-    max_x, max_y = pg.size()
-    pg.click(x=max_x/2.0, y=max_y/2.0, duration=1.0, button='right')
-    sleep(1.0)
-    pg.press('C')
-    sleep(m_time_out)
-    m_browser.close()
-    m_browser.switch_to.window(main_window)
-    return None
-
+from functions import clear_downloads
 
 user_path = os.getenv('HOME')
 downloads_path = os.path.join(user_path, 'Downloads') # <- change here downloads location
