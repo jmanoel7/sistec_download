@@ -65,27 +65,66 @@ for campus in campi.items():
 
     # seleciona o campus
     xpath = '/html/body/div[1]/div[3]/div/div[3]/div/div/form/div/fieldset/div/select'
-    select_element = get_browser().find_element(by=By.XPATH, value=xpath)
-    select_object = Select(select_element)
-    select_object.select_by_value(campus[1])
+    while True:
+        try:
+            select_element = get_browser().find_element(by=By.XPATH, value=xpath)
+        except NoSuchElementException:
+            sleep(time_out)
+            continue
+        while True:
+            try:
+                select_object = Select(select_element)
+                select_object.select_by_value(campus[1])
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
+        break
     sleep(time_out)
 
     # clica no botão acessar
     xpath = '/html/body/div[1]/div[3]/div/div[3]/div/div/form/div/fieldset/input'
-    access_button = get_browser().find_element(by=By.XPATH, value=xpath)
-    access_button.click()
+    while True:
+        try:
+            access_button = get_browser().find_element(by=By.XPATH, value=xpath)
+        except NoSuchElementException:
+            sleep(time_out)
+            continue
+        while True:
+            try:
+                access_button.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
+        break
     sleep(time_out)
 
     # Janela de OK
-    #  xpath = '/html/body/div[7]/div[1]/div[2]/div/div/div[2]'
-    #  while True:
-    #      try:
-    #          ok_window = get_browser().find_element(by=By.XPATH, value=xpath)
-    #      except NoSuchElementException:
-    #          sleep(time_out)
-    #          continue
-    #      ok_window.click()
-    #      break
+    # xpath = '/html/body/div[7]/div[1]/div[2]/div/div/div[2]'
+    # while True:
+    #     try:
+    #         ok_window = get_browser().find_element(by=By.XPATH, value=xpath)
+    #     except NoSuchElementException:
+    #         sleep(time_out)
+    #         continue
+    #     while True:
+    #         try:
+    #             ok_window.click()
+    #         except ElementNotInteractableException:
+    #             sleep(time_out)
+    #             continue
+    #         except ElementClickInterceptedException:
+    #             sleep(time_out)
+    #             continue
+    #         break
+    #     break
 
     # clique na aba 'Cursos'
     xpath = '/html/body/div[2]/div[1]/div[2]/ul[2]/li[6]/a'
@@ -95,8 +134,17 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
+        while True:
+            try:
+                courses_tab.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
         break
-    courses_tab.click()
     sleep(time_out)
 
     # no 'Menu Cursos' clique na caixinha '+' da opção 'Cadastro'
@@ -111,6 +159,9 @@ for campus in campi.items():
             try:
                 option_cadastro.click()
             except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
                 sleep(time_out)
                 continue
             break
@@ -131,6 +182,9 @@ for campus in campi.items():
             except ElementNotInteractableException:
                 sleep(time_out)
                 continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
             break
         break
     sleep(time_out)
@@ -149,6 +203,9 @@ for campus in campi.items():
             except ElementNotInteractableException:
                 sleep(time_out)
                 continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
             break
         break
     sleep(time_out)
@@ -164,6 +221,9 @@ for campus in campi.items():
         while True:
             try:
                 excel_exportar_csv.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
             except ElementClickInterceptedException:
                 sleep(time_out)
                 continue
@@ -198,6 +258,9 @@ for campus in campi.items():
             except ElementNotInteractableException:
                 sleep(time_out)
                 continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
             break
         break
     sleep(time_out)
@@ -216,6 +279,9 @@ for campus in campi.items():
             except ElementNotInteractableException:
                 sleep(time_out)
                 continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
             break
         break
     sleep(time_out)
@@ -228,8 +294,17 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
+        while True:
+            try:
+                radio_button_regular.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
         break
-    radio_button_regular.click()
     sleep(time_out)
 
     # na tela principal que se abriu, escolha a Situação 'Ativo' (input type radio button)
@@ -240,8 +315,17 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
+        while True:
+            try:
+                radio_button_ativo.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
         break
-    radio_button_ativo.click()
     sleep(time_out)
 
     # na tela principal que se abriu, clique na opção 'Pesquisar'
@@ -252,8 +336,17 @@ for campus in campi.items():
         except NoSuchElementException:
             sleep(time_out)
             continue
+        while True:
+            try:
+                option_pesquisar.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
         break
-    option_pesquisar.click()
     sleep(time_out)
 
     # clique no ícone do excel 'Exportar .csv'
@@ -267,6 +360,9 @@ for campus in campi.items():
         while True:
             try:
                 excel_exportar_csv.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
             except ElementClickInterceptedException:
                 sleep(time_out)
                 continue
@@ -289,8 +385,23 @@ for campus in campi.items():
 
     # clicar em 'Alterar Perfil'
     xpath = '/html/body/div[2]/div[1]/div[2]/ul[3]/li[5]/a'
-    sistec_element = get_browser().find_element(by=By.XPATH, value=xpath)
-    sistec_element.click()
+    while True:
+        try:
+            sistec_element = get_browser().find_element(by=By.XPATH, value=xpath)
+        except NoSuchElementException:
+            sleep(time_out)
+            continue
+        while True:
+            try:
+                sistec_element.click()
+            except ElementNotInteractableException:
+                sleep(time_out)
+                continue
+            except ElementClickInterceptedException:
+                sleep(time_out)
+                continue
+            break
+        break
     sleep(time_out)
 
 get_browser().quit()
