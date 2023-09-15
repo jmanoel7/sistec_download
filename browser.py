@@ -10,8 +10,10 @@ BROWSER = None
 
 def start_browser():
     options = Options()
-    options.binary_location = '/home/joaomanoel/.local/firefox/firefox'
-    service = Service(executable_path='/home/joaomanoel/.local/bin/geckodriver')
+    options.binary_location = '/usr/bin/firefox-esr' # <-- change here firefox binary location
+    options.add_argument('--safe-mode') # <-- start in safe-mode (disables extensions and themes for this session)
+    options.add_argument('-P Developer') # <-- choice profile 'Developer'
+    service = Service(executable_path='/usr/local/bin/geckodriver') # <-- change here geckodriver binary location
     browser = webdriver.Firefox(service=service, options=options)
     return browser
 
