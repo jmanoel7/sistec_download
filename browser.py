@@ -2,18 +2,18 @@
 
 
 from selenium import webdriver
-from selenium.webdriver import ChromeOptions as Options
-from selenium.webdriver import ChromeService as Service
+from selenium.webdriver import FirefoxOptions as Options
+from selenium.webdriver import FirefoxService as Service
 
 BROWSER = None
 
 
 def start_browser():
     options = Options()
-    options.binary_location = '/usr/bin/google-chrome'
-    #  options.add_argument('--start-maximized')
-    service = Service(executable_path='/usr/local/bin/chromedriver')
-    browser = webdriver.Chrome(service=service, options=options)
+    options.binary_location = '/usr/local/bin/firefox'
+    options.add_argument('--safe-mode')
+    service = Service(executable_path='/usr/local/bin/geckodriver')
+    browser = webdriver.Firefox(service=service, options=options)
     return browser
 
 
