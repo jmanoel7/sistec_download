@@ -19,4 +19,3 @@ def clear_downloads(m_browser, m_time_out):
     m_browser.close()
     m_browser.switch_to.window(main_window)
     return None
-

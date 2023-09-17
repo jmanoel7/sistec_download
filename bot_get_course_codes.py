@@ -214,9 +214,8 @@ for campus in campi.items():
                 continue
             break
         break
-    sleep(time_out)
 
-    clear_downloads(get_browser(), time_out)
+    clear_downloads(get_browser(), time_out * 2.0)
 
     # move o arquivo sistec_csv.csv do diretório de downloads para o diretório do câmpus atual
     file_sistec_csv = os.path.join(downloads_path, 'sistec_csv.csv')
@@ -353,9 +352,8 @@ for campus in campi.items():
                 continue
             break
         break
-    sleep(time_out)
 
-    clear_downloads(get_browser(), time_out)
+    clear_downloads(get_browser(), time_out * 2.0)
 
     # move o arquivo cursos_tecnicos.csv do diretório de downloads para o diretório do câmpus atual
     file_cursos_tecnicos = os.path.join(downloads_path, 'cursos_tecnicos.csv')
