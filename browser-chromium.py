@@ -11,7 +11,7 @@ BROWSER = None
 def start_browser():
     options = Options()
     options.binary_location = '/usr/bin/chromium'
-    # options.add_argument('--start-maximized')
+    options.add_argument('--start-maximized')
     service = Service(executable_path='/usr/bin/chromedriver')
     browser = webdriver.Chrome(service=service, options=options)
     return browser

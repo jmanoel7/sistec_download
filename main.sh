@@ -4,10 +4,7 @@ set -e
 
 # create and use virtualenv 'sistec_download'
 ./mkvenv.sh
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+. ~/.local/venv/sistec_download/bin/activate
 
 
 # export vars

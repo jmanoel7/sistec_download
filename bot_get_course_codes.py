@@ -7,7 +7,6 @@ import shutil
 import sys
 from time import sleep
 
-import pyautogui as pg
 from selenium.common.exceptions import (ElementClickInterceptedException,
                                         ElementNotInteractableException,
                                         NoSuchElementException)
