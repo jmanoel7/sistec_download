@@ -4,7 +4,7 @@ set -e
 
 # create and use virtualenv 'sistec_download'
 ./mkvenv.sh
-. ~/.local/venv/sistec_download/bin/activate
+. ~/.local/venvs/sistec_download/bin/activate
 
 
 # export vars

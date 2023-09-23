@@ -2,6 +2,7 @@
 
 from time import sleep
 
+
 def clear_downloads(m_browser, m_time_out):
     sleep(m_time_out)
     main_window = m_browser.current_window_handle
