@@ -288,7 +288,7 @@ for campus in campi.items():
         break
     sleep(time_out)
 
-    clear_downloads(get_browser(), time_out)
+    clear_downloads(get_browser(), time_out * 2.0)
 
     # renomeia o arquivo sistec.csv de acordo com o Campus selecionado
     sistec_csv = os.path.join(downloads_path, 'sistec.csv')
