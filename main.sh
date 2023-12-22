@@ -36,9 +36,9 @@ rm -f ~/Downloads/cursos_tecnicos*
 python ./create_folders_course_codes.py
 
 
-echo 'Pronto! Agora você já pode baixar as planilhas com os códigos dos cursos direto do sistec!'
-echo 'Baixe cada planilha e mova-a para a sua devida pasta (de acordo com o nome do campus).'
-echo "A raiz onde as pastas (campus) ficam é: ${DIR_BASE} ."
+echo -e '\nPronto! Agora você já pode baixar as planilhas com os códigos dos cursos direto do sistec!'
+echo -e 'Baixe cada planilha e mova-a para a sua devida pasta (de acordo com o nome do campus).'
+echo -e "A raiz onde as pastas (campus) ficam é: ${DIR_BASE} ."
 
 opt="0"
 while [[ "$opt" != "s" ]] && [[ "$opt" != "S" ]] && [[ "$opt" != "n" ]] && [[ "$opt" != "N" ]]
@@ -102,9 +102,9 @@ rm -f ~/Downloads/sistec*.csv
 python ./create_folders_spreadsheets.py
 
 
-echo 'Pronto! Agora você já pode baixar as planilhas com os alunos direto do sistec!'
-echo 'Baixe cada planilha e mova-a para a sua devida pasta (de acordo com o nome do campus).'
-echo "A raiz onde as pastas (campus) ficam é: ${DIR_AUDIT} ."
+echo -e '\nPronto! Agora você já pode baixar as planilhas com os alunos direto do sistec!'
+echo -e 'Baixe cada planilha e mova-a para a sua devida pasta (de acordo com o nome do campus).'
+echo -e "A raiz onde as pastas (campus) ficam é: ${DIR_AUDIT} ."
 
 opt="0"
 while [[ "$opt" != "s" ]] && [[ "$opt" != "S" ]] && [[ "$opt" != "n" ]] && [[ "$opt" != "N" ]]
