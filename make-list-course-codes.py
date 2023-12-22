@@ -1,4 +1,3 @@
-#!/usr/bin/env python3.11
 # -*- coding: utf-8 -*-
 
 
@@ -6,6 +5,7 @@ import os
 import sys
 
 from campus import campus_list as lista_campus
+
 
 dir_base = os.path.join(os.getcwd(), 'sistec_course_codes')
 os.chdir(dir_base)

@@ -2,8 +2,11 @@
 set -e
 
 
-# create and use virtualenv 'sistec_download'
+# create virtualenv
 ./mkvenv.sh
+
+
+# activate virtualenv
 . ~/.local/venvs/sistec_download/bin/activate
 
 
@@ -29,12 +32,31 @@ rm -f ~/Downloads/sistec_csv*
 rm -f ~/Downloads/cursos_tecnicos*
 
 
-# python3.11 bot get course codes from sistec.mec.gov.br
-./bot_get_course_codes.py
+# create folders for course codes to all campi
+python ./create_folders_course_codes.py
 
 
-# python3.11 make list course codes from spreadsheets csv
-./make-list-course-codes.py
+echo 'Pronto! Agora você já pode baixar as planilhas com os códigos dos cursos direto do sistec!'
+echo 'Baixe cada planilha e mova-a para a sua devida pasta (de acordo com o nome do campus).'
+echo "A raiz onde as pastas (campus) ficam é: ${DIR_BASE} ."
+
+opt="0"
+while [[ "$opt" != "s" ]] && [[ "$opt" != "S" ]] && [[ "$opt" != "n" ]] && [[ "$opt" != "N" ]]
+do
+    echo -e '\nJá baixou as TODAS as planilhas e as colocou em suas devidas pastas? (S/N)?'
+    read opt
+done
+
+if [[ "$opt" = "N" ]] || [[ "$opt" = "n" ]]
+then
+    echo "Não se esqueça de continuar o código de onde parou se for o caso,"
+    echo "aí altere momentaneamente o arquivo campus.py e depois restaure-o com o all_campus.py !"
+    exit 1
+fi
+
+
+# python make list course codes from spreadsheets csv
+python ./make-list-course-codes.py
 
 
 # sort course codes
@@ -43,7 +65,7 @@ sort -n -u $FILE_EAD_CODE_IN > $FILE_EAD_CODE_OUT
 
 
 # separation of distance course codes
-./separation-course-codes.py
+python ./separation-course-codes.py
 
 
 # delete lines with old course codes in tweak_spreadsheets.py
@@ -76,18 +98,42 @@ mkdir -p "$DIR_AUDIT"
 rm -f ~/Downloads/sistec*.csv
 
 
-# python3.11 bot get spreadsheets from sistec.mec.gov.br
-./bot_get_spreadsheets.py
+# create folders for spreadsheets to all campi
+python ./create_folders_spreadsheets.py
+
+
+echo 'Pronto! Agora você já pode baixar as planilhas com os alunos direto do sistec!'
+echo 'Baixe cada planilha e mova-a para a sua devida pasta (de acordo com o nome do campus).'
+echo "A raiz onde as pastas (campus) ficam é: ${DIR_AUDIT} ."
+
+opt="0"
+while [[ "$opt" != "s" ]] && [[ "$opt" != "S" ]] && [[ "$opt" != "n" ]] && [[ "$opt" != "N" ]]
+do
+    echo -e '\nJá baixou as TODAS as planilhas e as colocou em suas devidas pastas? (S/N)?'
+    read opt
+done
+
+if [[ "$opt" = "N" ]] || [[ "$opt" = "n" ]]
+then
+    echo "Não se esqueça de continuar o código de onde parou se for o caso,"
+    echo "aí altere momentaneamente o arquivo campus.py e depois restaure-o com o all_campus.py !"
+    exit 2
+fi
+
+
+# create files from spreadsheets to all campi
+python ./create_files_spreadsheets.py
 
 
 # execute tweaks in spreadsheets
 cd ./sistec_audit/presencial/
-../../tweak_spreadsheets.py
+python ../../tweak_spreadsheets.py
 cd ../..
 
 cd ./sistec_audit/ead/
-../../tweak_ead_spreadsheets.py
+python ../../tweak_ead_spreadsheets.py
 cd ../..
 
 
 exit 0
+

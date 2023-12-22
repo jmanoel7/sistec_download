@@ -1,10 +1,17 @@
 #!/bin/bash
 
+# clean virtualenv
+deactivate >/dev/null 2>&1
 rm -rf ~/.local/venvs/sistec_download
-python3.11 -m venv ~/.local/venvs/sistec_download
+
+# creat virtualenv
+python -m venv ~/.local/venvs/sistec_download
+
+# activate virtualenv
 . ~/.local/venvs/sistec_download/bin/activate
-python3.11 -m pip install -U pep517
-python3.11 -m pip install --use-pep517 -U pip
-python3.11 -m pip install --use-pep517 -U -r requirements.txt
+
+# install pip packages
+pip install -U pip
+pip install -U -r requirements.txt
 
 exit 0
