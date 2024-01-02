@@ -51,7 +51,7 @@ if [[ "$opt" = "N" ]] || [[ "$opt" = "n" ]]
 then
     echo "Não se esqueça de continuar o código de onde parou se for o caso,"
     echo "aí altere momentaneamente o arquivo campus.py e depois restaure-o com o all_campus.py !"
-    exit 1
+    exit 0
 fi
 
 
@@ -117,7 +117,7 @@ if [[ "$opt" = "N" ]] || [[ "$opt" = "n" ]]
 then
     echo "Não se esqueça de continuar o código de onde parou se for o caso,"
     echo "aí altere momentaneamente o arquivo campus.py e depois restaure-o com o all_campus.py !"
-    exit 2
+    exit 0
 fi
 
 
