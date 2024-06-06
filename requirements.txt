@@ -1,4 +1,3 @@
 jupyterlab
-ipython
 isort
 yapf
