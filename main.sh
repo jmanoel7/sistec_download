@@ -7,7 +7,7 @@ set -e
 
 
 # activate virtualenv
-. ~/.local/venvs/sistec_download/bin/activate
+. "${HOME}/.local/venvs/sistec_download/bin/activate"
 
 
 # export vars
@@ -44,7 +44,7 @@ opt="0"
 while [[ "$opt" != "s" ]] && [[ "$opt" != "S" ]] && [[ "$opt" != "n" ]] && [[ "$opt" != "N" ]]
 do
     echo -e '\nJá baixou as TODAS as planilhas e as colocou em suas devidas pastas? (S/N)?'
-    read opt
+    read -r opt
 done
 
 if [[ "$opt" = "N" ]] || [[ "$opt" = "n" ]]
@@ -55,28 +55,28 @@ then
 fi
 
 
-python make list course codes from spreadsheets csv
+# python make list course codes from spreadsheets csv
 python ./make-list-course-codes.py
 
 
-sort course codes
-sort -n -u $FILE_CODE_IN > $FILE_CODE_OUT
-sort -n -u $FILE_EAD_CODE_IN > $FILE_EAD_CODE_OUT
+# sort course codes
+sort -n -u "$FILE_CODE_IN" > "$FILE_CODE_OUT"
+sort -n -u "$FILE_EAD_CODE_IN" > "$FILE_EAD_CODE_OUT"
 
 
-separation of distance course codes
+# separation of distance course codes
 python ./separation-course-codes.py
 
 
-delete lines with old course codes in tweak_spreadsheets.py
+# delete lines with old course codes in tweak_spreadsheets.py
 sed -i '/\# -----BEGIN DISTANCE COURSE CODES-----/,/\# -----END DISTANCE COURSE CODES-----/ { /\# -----BEGIN DISTANCE COURSE CODES-----/ b; /\# -----END DISTANCE COURSE CODES-----/ b; d }' tweak_spreadsheets.py
 sed -i '/\# -----BEGIN FACE-TO-FACE COURSE CODES-----/,/\# -----END FACE-TO-FACE COURSE CODES-----/ { /\# -----BEGIN FACE-TO-FACE COURSE CODES-----/ b; /\# -----END FACE-TO-FACE COURSE CODES-----/ b; d }' tweak_spreadsheets.py
 
 
-insert lines with new course codes in tweak_spreadsheets.py
-./make-lines-course-codes.sh 16 $FILE_EAD_TWO_CODE_OUT | \
+# insert lines with new course codes in tweak_spreadsheets.py
+./make-lines-course-codes.sh 16 "$FILE_EAD_TWO_CODE_OUT" | \
    sed -i '/\# -----BEGIN DISTANCE COURSE CODES-----/,/\# -----END DISTANCE COURSE CODES-----/ r /dev/stdin' tweak_spreadsheets.py
-./make-lines-course-codes.sh 16 $FILE_CODE_OUT | \
+./make-lines-course-codes.sh 16 "$FILE_CODE_OUT" | \
    sed -i '/\# -----BEGIN FACE-TO-FACE COURSE CODES-----/,/\# -----END FACE-TO-FACE COURSE CODES-----/ r /dev/stdin' tweak_spreadsheets.py
 
 
@@ -85,7 +85,7 @@ sed -i '/\# -----BEGIN DISTANCE COURSE CODES-----/,/\# -----END DISTANCE COURSE 
 
 
 # insert lines with new course codes in tweak_ead_spreadsheets.py
-./make-lines-course-codes.sh 12 $FILE_EAD_ONE_CODE_OUT | \
+./make-lines-course-codes.sh 12 "$FILE_EAD_ONE_CODE_OUT" | \
    sed -i '/\# -----BEGIN DISTANCE COURSE CODES-----/,/\# -----END DISTANCE COURSE CODES-----/ r /dev/stdin' tweak_ead_spreadsheets.py
 
 
@@ -110,7 +110,7 @@ opt="0"
 while [[ "$opt" != "s" ]] && [[ "$opt" != "S" ]] && [[ "$opt" != "n" ]] && [[ "$opt" != "N" ]]
 do
     echo -e '\nJá baixou as TODAS as planilhas e as colocou em suas devidas pastas? (S/N)?'
-    read opt
+    read -r opt
 done
 
 if [[ "$opt" = "N" ]] || [[ "$opt" = "n" ]]
