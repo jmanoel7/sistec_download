@@ -1,6 +1,7 @@
 undetected-chromedriver
 selenium
 pyautogui
+python-xlib
 jupyterlab
 isort
 yapf
